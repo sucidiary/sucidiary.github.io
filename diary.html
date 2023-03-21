@@ -77,24 +77,38 @@
       </div>
     </div>
     <script>
-      function saveDiary() {
-        const inputField = document.getElementById("input-field");
-        const diary = inputField.value;
-        localStorage.setItem("diary", diary);
-        alert("Diary berhasil disimpan!");
-      }
+     function saveDiary() {
+  const inputField = document.getElementById("input-field");
+  const diary = inputField.value;
+  localStorage.setItem("diary", diary);
+  alert("Diary berhasil disimpan!");
+}
 
-      function loadDiary() {
-        const inputField = document.getElementById("input-field");
-        const diary = localStorage.getItem("diary");
-        if (diary) {
-          inputField.value = diary;
-        }
-      }
+function loadDiary() {
+  const inputField = document.getElementById("input-field");
+  const diary = localStorage.getItem("diary");
+  if (diary) {
+    inputField.value = diary;
+  }
+}
 
-      window.onload = function() {
-        loadDiary();
-      }
+function clearDiary() {
+  const lastSaved = localStorage.getItem("lastSaved");
+  const now = new Date();
+  const lastSavedDate = new Date(lastSaved);
+
+  if (lastSaved && now.toDateString() !== lastSavedDate.toDateString()) {
+    localStorage.removeItem("diary");
+  }
+
+  localStorage.setItem("lastSaved", now);
+}
+
+window.onload = function() {
+  clearDiary();
+  loadDiary();
+}
+
     </script>
   </body>
 </html>
