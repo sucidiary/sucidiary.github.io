@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Suci Diary</title>
+    <style>
+      /* Import the Cooper Black font from Adobe Fonts */
+      @import url('https://use.typekit.net/rsl0wpi.css');
+      /* Set the background color to Misty Rose */
+      body {
+        background-color: MistyRose;
+      }
+      /* Center the content in the middle of the page */
+      #content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Add this to stack the clock and date vertically */
+        height: 100vh;
+      }
+      /* Style the long round rectangle */
+      #bar {
+        width: 20%;
+        height: 50px;
+        border-radius: 25px;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "cooper-black-std", serif;
+        font-size: 24px;
+        font-weight: 400;
+        font-style: italic;
+        cursor: pointer; /* Add this to change the cursor to a pointer when hovering over the title */
+      }
+      /* Style the clock and date */
+      #clock {
+        font-family: "cooper-black-std", serif;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      #date {
+        font-family: "cooper-black-std", serif;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <div id="clock">
+        <span id="hour"></span>:<span id="minute"></span>
+      </div>
+      <div id="bar" onclick="openDiary()">Suci Diary</div>
+      <div id="date"></div>
+    </div>
+    <script>
+      // Get the current time and date
+      function updateTime() {
+        const date = new Date();
+        const hour = date.getHours().toString().padStart(2, '0');
+        const minute = date.getMinutes().toString().padStart(2, '0');
+        const dayOfWeek = date.toLocaleDateString('en-US', {weekday: 'long'});
+        const month = date.toLocaleDateString('en-US', {month: 'long'});
+        const dayOfMonth = date.getDate().toString().padStart(2, '0');
+        const year = date.getFullYear().toString();
+        // Update the clock and date in the HTML
+        document.getElementById('hour').textContent = hour;
+        document.getElementById('minute').textContent = minute;
+        document.getElementById('date').textContent = `${dayOfWeek}, ${month} ${dayOfMonth}, ${year}`;
+      }
+      // Update the time every minute
+      updateTime();
+      setInterval(updateTime, 60000);
+      
+      // Open the diary and redirect to the new page
+      function openDiary() {
+        if (confirm(`Buka diary nya?\n${document.getElementById('date').textContent}`)) {
+          window.location.href = 'diary.html';
+        }
+      }
+    </script>
+  </body>
+</html>

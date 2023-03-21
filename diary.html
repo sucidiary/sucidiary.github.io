@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My New Page</title>
+    <style>
+      /* Import the Cooper Black font from Adobe Fonts */
+      @import url('https://use.typekit.net/zqe0opy.css');
+      /* Set the background color to Misty Rose */
+      body {
+        background-color: MistyRose;
+        font-family: "cooper-black-std", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      /* Center the content in the middle of the page */
+      #content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      /* Style the white rectangle */
+      #box {
+        width: 486px;
+        height: 327px;
+        border-radius: 20px;
+        background-color: white;
+        position: relative; /* Add a relative position to the parent element */
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      /* Style the header */
+      #header {
+        font-size: 25px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      /* Style the input field */
+      #input-field {
+        width: calc(100% - 40px);
+        height: calc(100% - 130px);
+        border: none;
+        border-radius: 20px;
+        padding: 10px;
+        font-size: 16px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        resize: none;
+      }
+      /* Style the save button */
+      #save-button {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 80px;
+        height: 40px;
+        border: none;
+        border-radius: 20px;
+        background-color: #5cb85c;
+        color: #ffffff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      /* Disable resizing of input field */
+      #input-field:resize {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <div id="box">
+        <div id="header">Diary #1</div>
+        <textarea id="input-field" placeholder="Ketik di sini..." ></textarea>
+        <button id="save-button" onclick="saveDiary()">Simpan</button>
+      </div>
+    </div>
+    <script>
+      function saveDiary() {
+        const inputField = document.getElementById("input-field");
+        const diary = inputField.value;
+        localStorage.setItem("diary", diary);
+        alert("Diary berhasil disimpan!");
+      }
+
+      function loadDiary() {
+        const inputField = document.getElementById("input-field");
+        const diary = localStorage.getItem("diary");
+        if (diary) {
+          inputField.value = diary;
+        }
+      }
+
+      window.onload = function() {
+        loadDiary();
+      }
+    </script>
+  </body>
+</html>
