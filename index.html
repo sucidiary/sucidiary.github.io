@@ -2,25 +2,34 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Suci Diary</title>
+    <title>Misty Rose Background with Cooper Black font</title>
     <style>
-      /* Import the Cooper Black font from Adobe Fonts */
-      @import url('https://use.typekit.net/rsl0wpi.css');
+      /* Import the Cooper Black font from Typekit */
+      @import url('https://use.typekit.net/zqe0opy.css');
+
+      /* Set the font family, weight, and style */
+      body {
+        font-family: "cooper-black-std", serif;
+        font-weight: 400;
+        font-style: italic;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+
       /* Set the background color to Misty Rose */
       body {
         background-color: MistyRose;
       }
-      /* Center the content in the middle of the page */
-      #content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column; /* Add this to stack the clock and date vertically */
-        height: 100vh;
-      }
-      /* Style the long round rectangle */
-      #bar {
-        width: 20%;
+
+      /* Style the element with ID "box" */
+      #suci-diary {
+        position: absolute;
+        bottom: 39%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
         height: 50px;
         border-radius: 25px;
         background-color: white;
@@ -31,53 +40,43 @@
         font-size: 24px;
         font-weight: 400;
         font-style: italic;
-        cursor: pointer; /* Add this to change the cursor to a pointer when hovering over the title */
+        cursor: pointer;
+        z-index: 1;
+        border: 1px solid black; /* Add this line to add black outline to the box */
       }
-      /* Style the clock and date */
-      #clock {
-        font-family: "cooper-black-std", serif;
-        font-size: 18px;
-        font-weight: bold;
-      }
-      #date {
-        font-family: "cooper-black-std", serif;
-        font-size: 14px;
+
+      /* Style the image */
+      #cover {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        height: auto;
+        display: block;
+        z-index: 0;
       }
     </style>
   </head>
   <body>
-    <div id="content">
-      <div id="clock">
-        <span id="hour"></span>:<span id="minute"></span>
-      </div>
-      <div id="bar" onclick="openDiary()">Suci Diary</div>
-      <div id="date"></div>
-    </div>
+    <div id="suci-diary">Suci Diary</div>
+    <img id="cover" src="https://i.ibb.co/Fg1DZHR/810fb149c221774ba2db56ee013bc3e0-transformed-1.png" alt="Image">
     <script>
-      // Get the current time and date
-      function updateTime() {
-        const date = new Date();
-        const hour = date.getHours().toString().padStart(2, '0');
-        const minute = date.getMinutes().toString().padStart(2, '0');
-        const dayOfWeek = date.toLocaleDateString('en-US', {weekday: 'long'});
-        const month = date.toLocaleDateString('en-US', {month: 'long'});
-        const dayOfMonth = date.getDate().toString().padStart(2, '0');
-        const year = date.getFullYear().toString();
-        // Update the clock and date in the HTML
-        document.getElementById('hour').textContent = hour;
-        document.getElementById('minute').textContent = minute;
-        document.getElementById('date').textContent = `${dayOfWeek}, ${month} ${dayOfMonth}, ${year}`;
-      }
-      // Update the time every minute
-      updateTime();
-      setInterval(updateTime, 60000);
-      
-      // Open the diary and redirect to the new page
-      function openDiary() {
-        if (confirm(`Buka diary nya?\n${document.getElementById('date').textContent}`)) {
-          window.location.href = 'diary.html';
-        }
-      }
+      // Get the image element
+      var cover = document.getElementById('cover');
+
+      // Disable clicking on the image
+      cover.addEventListener('click', function(event) {
+        event.preventDefault();
+      });
+
+      // Get the box element
+      var suciDiary = document.getElementById('suci-diary');
+
+      // Redirect to cover.html when clicking on the box
+      suciDiary.addEventListener('click', function(event) {
+        window.location.href = 'cover.html';
+      });
     </script>
   </body>
 </html>
