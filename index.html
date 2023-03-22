@@ -23,12 +23,9 @@
         background-color: MistyRose;
       }
 
-      /* Style the element with ID "box" */
-      #suci-diary {
+      /* Style the element with class "box" */
+      .box {
         position: absolute;
-        bottom: 45%;
-        left: 50%;
-        transform: translateX(-50%);
         width: 200px;
         height: 50px;
         border-radius: 25px;
@@ -45,6 +42,20 @@
         border: 1px solid black; /* Add this line to add black outline to the box */
       }
 
+      /* Style the first box with ID "suci-diary" */
+      #suci-diary {
+        bottom: 45%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      /* Style the second box with ID "love-card" */
+      #love-card {
+        top: 57%;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
       /* Style the image */
       #cover {
         position: absolute;
@@ -59,7 +70,8 @@
     </style>
   </head>
   <body>
-    <div id="suci-diary">Suci Diary</div>
+    <div id="suci-diary" class="box">Suci Diary</div>
+    <div id="love-card" class="box">Love Card</div>
     <img id="cover" src="https://i.ibb.co/Fg1DZHR/810fb149c221774ba2db56ee013bc3e0-transformed-1.png" alt="Image">
     <script>
       // Get the image element
@@ -70,12 +82,20 @@
         event.preventDefault();
       });
 
-      // Get the box element
+      // Get the box element with ID "suci-diary"
       var suciDiary = document.getElementById('suci-diary');
 
-      // Redirect to cover.html when clicking on the box
+      // Redirect to cover.html when clicking on the "suci-diary" box
       suciDiary.addEventListener('click', function(event) {
-        window.location.href = 'cover.html';
+        window.location.href = 'surat.html';
+      });
+
+      // Get the box element with ID "love-card"
+      var loveCard = document.getElementById('love-card');
+
+      // Redirect to surat.html when clicking on the "love-card" box
+      loveCard.addEventListener('click', function(event) {
+        window.location.href = 'surat.html';
       });
     </script>
   </body>
