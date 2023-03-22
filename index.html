@@ -97,6 +97,20 @@
       loveCard.addEventListener('click', function(event) {
         window.location.href = 'surat.html';
       });
+
+      // Get the image element
+var cover = document.getElementById('cover');
+
+// Disable right-click menu on the image
+cover.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
+
+// Disable touch-and-hold menu on the image
+cover.addEventListener('touchstart', function(event) {
+  event.preventDefault();
+});
+
     </script>
   </body>
 </html>
